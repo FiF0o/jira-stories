@@ -1,0 +1,6 @@
+*~
+*.swp
+*.swo
+config.js
+.idea
+node_modules

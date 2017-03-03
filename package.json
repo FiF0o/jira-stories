@@ -1,0 +1,30 @@
+{
+  "name": "storyprinter",
+  "version": "1.0.0",
+  "description": "angular app using jira api to create jql queries to return tickets",
+  "main": "storyPrinter.js",
+  "dependencies": {
+    "express": "4.13.3",
+    "request": "2.65.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FiF0o/storyprinter.git"
+  },
+  "keywords": [
+    "angular",
+    "jira",
+    "api",
+    "tickets"
+  ],
+  "author": "Jon Laz <jonathan.lazarini@wanadoo.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FiF0o/storyprinter/issues"
+  },
+  "homepage": "https://github.com/FiF0o/storyprinter#readme"
+}

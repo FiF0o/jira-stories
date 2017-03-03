@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="cards">
+  <head>
+    <title>Bootstrap & Angular Template</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="callout.css" />
+
+
+  </head>
+  <body id="jon">
+    <div class="container" ng-controller="CardController as card">
+      <div role="main">
+        <div class="search">
+          <form  ng-submit="search()">
+            Input some JQL to search
+            <input type="text" ng-model="query.jqlQuery" placeholder="e.g. project = 'Agile Recruitment'" style="width: 50%"/>
+            <input type="submit" value="Generate Cards" />
+          </form>
+        </div> <!-- end class search -->
+        <div ng-repeat="story in stories">
+          <div class="col-md-6 bs-callout row bs-callout-primary">
+            <div class="row issueSummary">
+              <div class="col-md-4">
+                <h4>{{story.key|limitTo:8}}</h4>
+              </div>
+              <div class="col-md-8 text-right">
+                <h4> {{story.fields.summary|limitTo:50}} </h4>
+              </div>
+            </div> <!-- end row issue summary -->
+
+            <div class ="row">
+              <div class="col-md-4">
+                Rank:<br>
+                <span class="badge">{{ $index + 1 }}</span>
+              </div>
+              <div class="col-md-4 center">
+                Epic:<br>
+                <b>{{story.fields.customfield_10008}}</b>
+               <!-- Epic: {{story.fields.issuetype.name}} -->
+
+              </div>
+
+
+              <!-- add model here for label -->
+              <div class="col-md-4 right" ng-model="label">
+              Label: <i>{{story.fields.labels | jsonToList}}</i>
+              </div>
+            </div> <!-- end row rank, epic, label -->
+            <div class="row">
+              <div class="col-md-12 text-justify description">
+              <blockquote> {{story.fields.description|limitTo:420}} </blockquote>
+              </div>
+
+             </div>  <!-- end row description -->
+
+
+          <div class="row">
+            <div class="col-md-4 bottom">
+              <h4>{{story.fields.customfield_10114.value|limitTo:1}}</h4>
+            </div>
+            <div class="col-md-4 center bottom">
+              <h4>{{story.fields.customfield_10004}}</h4>
+            </div>
+            <div class="col-md-4 right">
+              <img class="avatar" ng-src={{story.fields.assignee.avatarUrls['16x16']}}>
+                </div>
+              </div>
+              <div class="separator">fold here</div>
+              <div class="row">
+                <div class="col-md-12 text-justify"> 
+                <blockquote id="acceptance-criteria">
+                  <div class="acceptance-criteria">
+                    <h4>Acceptance criteria</h4>
+                    <p>{{story.fields.customfield_10113}}</p>
+                  </div><!-- end div acceptance-criteria -->
+                </blockquote>
+                </div>
+
+              </div> <!-- end row for acceptance criteria -->
+
+
+            </div> <!-- end callout -->
+            <div ng-show="$index % 2 == 0" class="spacer">&nbsp</div>
+            <div ng-show="$index % 2 == 1" class="page-break">&nbsp</div>
+        </div> <!-- end div for story in stories -->
+      
+
+      </div> <!-- end role main -->
+    </div> <!-- end class container / cardcontroller -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
